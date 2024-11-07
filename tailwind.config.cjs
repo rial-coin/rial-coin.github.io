@@ -4,33 +4,32 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primaryColor: "rgb(99, 102, 241)",
-        secondaryColor: "rgb(161, 163, 247)",
-        primaryText: "rgb(255,255,255)",
-        secondaryText: "rgb(174, 178, 183)",
-        bgDark1: "rgb(31, 32, 35)",
-        bgDark2: "rgb(38, 39, 43)",
-        bgDark3: "rgb(48, 49, 54)",
-        bgDark3Hover: "rgb(55, 56, 62)",
-        bgDarkTransparent: "rgb(31, 32, 35, 0.7)",
-        bgDarkTransparentDarker: "rgb(0,0,0,0.5)",
-        bgDarkTransparentLighter: "rgb(48, 49, 54, 0.7)",
-        mainBorder: "rgb(255,255,255,0.15)",
-        mainBorderDarker: "rgb(255,255,255,0.07)",
-        quoteIconColor: "rgb(178, 184, 205)"
+        primaryColor: "rgb(0, 136, 204)", 
+        secondaryColor: "rgb(0, 112, 188)", 
+        primaryText: "rgb(255,255,255)", 
+        secondaryText: "rgb(179, 179, 179)", 
+        bgDark1: "rgb(21, 32, 43)", 
+        bgDark2: "rgb(26, 36, 47)", 
+        bgDark3: "rgb(36, 47, 58)", 
+        bgDark3Hover: "rgb(41, 52, 63)", 
+        bgDarkTransparent: "rgba(21, 32, 43, 0.7)", 
+        bgDarkTransparentDarker: "rgba(0, 0, 0, 0.5)", 
+        bgDarkTransparentLighter: "rgba(36, 47, 58, 0.7)", 
+        mainBorder: "rgba(255, 255, 255, 0.15)", 
+        mainBorderDarker: "rgba(255, 255, 255, 0.07)", 
+        quoteIconColor: "rgb(138, 150, 169)" 
       },
       fontFamily: {
-        Inter: "Inter",
+        Inter: ["Inter", "sans-serif"], 
       },
       screens: {
         xs: "530px",
         sm: "640px",
         md: "768px",
         lg: "1024px",
-        xl: "1280px",      
+        xl: "1280px",
         "2xl": "1536px",
       },
     },
   },
 };
-
