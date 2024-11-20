@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import { TailcastLogo } from "../assets/logos/TailcastLogo";
+import { RialLogo } from "../assets/logos/RialLogo";
 import { GithubIcon } from "../assets/icons/GithubIcon";
 import { WalletIcon } from "../assets/icons/WalletIcon";
 
@@ -31,7 +31,7 @@ export const Navbar = () => {
           <a href="/#home" aria-label="Home">
             <div className="flex justify-start items-center grow basis-0">
               <div className="text-white mr-2 text-6xl">
-                <TailcastLogo />
+                <RialLogo />
               </div>
               <div className="text-white font-['Inter'] font-bold text-xl">
                 Rial Coin
