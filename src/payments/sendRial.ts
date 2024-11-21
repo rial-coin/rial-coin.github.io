@@ -11,12 +11,15 @@ import { getJettonWalletAddress } from '../utils/getJettonWalletAddress';
 export const handleSendRial = async (
   tonConnectUI: any,
   userFriendlyAddress: string | null,
+  rialAmount: number // Accepting custom amount
 ) => {
   if (!userFriendlyAddress) {
     console.error('User address is not available');
     return;
   }
+  const rialAmountInNano = rialAmount * 100000000;;  
 
+  toNano('1')
   const forwardPayload = beginCell()
     .storeUint(0, 32) // 0 opcode means we have a comment
     .storeStringTail('RIAL Pass payment!')
@@ -25,7 +28,7 @@ export const handleSendRial = async (
   const rialMessageBody = beginCell()
     .storeUint(0xf8a7ea5, 32) // opcode for jetton transfer
     .storeUint(0, 64) // query id
-    .storeCoins(RIAL_AMOUNT)
+    .storeCoins(rialAmountInNano)
     .storeAddress(RECEIVER_ADDRESS)
     .storeAddress(Address.parse(userFriendlyAddress)) // response destination
     .storeBit(0) // no custom payload
@@ -45,7 +48,7 @@ export const handleSendRial = async (
     jettonBalance = result.balance;
   }
 
-  if (!jettonBalance || jettonBalance < RIAL_AMOUNT) {
+  if (!jettonBalance || jettonBalance < rialAmountInNano) {
     alert('Insufficient funds');
     return;
   }

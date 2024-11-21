@@ -68,11 +68,11 @@ export const Navbar = () => {
             <a
               className="text-white main-border-gray rounded-xl
            bg-bgDark2 hover:bg-bgDark3  border-gray-700 pl-6 pr-8 pt-2 pb-2 text-sm flex"
-              href="#"
-              aria-label="Invest in RIAL Coin"
+              href="/buy"
+              aria-label="Invest in Rial Coin"
             >
               <WalletIcon />
-              <span className="pt-px">Invest in RIAL Coin</span>
+              <span className="pt-px">Invest in Rial Coin</span>
             </a>
           </div>
         </motion.div>
@@ -112,11 +112,11 @@ export const Navbar = () => {
               ))}
               <a
                 className="outlined-button pl-6 pr-8 pt-2 pb-2  flex"
-                href="/"
+                href="/buy"
                 target="_blank"
               >
                 <WalletIcon/>
-                Invest in RIAL Coin
+                Invest in Rial Coin
               </a>
             </div>
           </motion.div>

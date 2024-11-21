@@ -4,18 +4,18 @@ import { Navbar } from "../../components/Navbar";
 import { ScrollUpButton } from "../../components/ScrollUpButton";
 import Layout from "../../layouts/Layout.astro";
 import '../../styles/Theme.css';
-  import { Buy } from "../../components/Buy";
+import { Sell } from "../../components/Sell";
 import { Page } from "../../components/Page";
   const pageData = {
-  title: "Buy Rial Coin",
-  subtitle: "Invest in Rial Coin",
+  title: "Sell Rial Coin",
+  subtitle: "Easily Convert Your Rial Coin to USDT",
 };
 ---
 
-<Layout title="Buy Rial Coin">
+<Layout title="Sell Rial Coin">
   <Navbar client:load />
   <Page pageData={pageData} />
-  <Buy client:load/>
+  <Sell client:load/>
   <Footer />
   <ScrollUpButton client:load />
 </Layout>
