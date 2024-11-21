@@ -67,7 +67,7 @@ const Receive: React.FC = () => {
             className="w-full px-4 py-2 border border-mainBorder bg-bgDark3 text-primaryText rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primaryColor focus:border-primaryColor"
           />
           <p className="text-sm text-secondaryText mt-2">
-      By sending this amount, you will receive <span className="font-bold text-primaryColor">{rialAmount || 0}</span> usdt.
+      By sending this amount, you will receive <span className="font-bold text-primaryColor">{rialAmount || 0}</span> USDT.
     </p>
         </div>
         <button

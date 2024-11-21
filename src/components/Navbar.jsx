@@ -2,7 +2,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { RialLogo } from "../assets/logos/RialLogo";
-import { GithubIcon } from "../assets/icons/GithubIcon";
 import { WalletIcon } from "../assets/icons/WalletIcon";
 
 const navbarLinks = [
@@ -18,7 +17,7 @@ export const Navbar = () => {
 
   return (
     <nav
-      className="w-full h-20 flex flex-col justify-center items-center fixed z-40"
+      className="w-full h-20 flex flex-col justify-center items-center fixed bg-bgDark1 lg:bg-bgDarkTransparent z-40 lg:backdrop-blur-xl"
       aria-label="Main navigation"
     >
       <div className="2xl:w-[1280px] xl:w-10/12 w-11/12 flex justify-between items-center relative">
