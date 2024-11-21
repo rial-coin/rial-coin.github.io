@@ -1,9 +1,6 @@
-import React, { useState } from 'react';
-import { TonConnectButton, useTonConnectUI, useTonAddress } from '@tonconnect/ui-react';
-import { handleSendTon } from '../payments/sendTon';
-import { handleSendUsdt } from '../payments/sendUsdt';
-import { handleSendNot } from '../payments/sendNot';
-import './Send.css';
+import React, { useState } from "react";
+import { TonConnectButton, useTonConnectUI, useTonAddress } from "@tonconnect/ui-react";
+import { handleSendUsdt } from "../payments/sendUsdt";
 
 const Send: React.FC = () => {
   const [tonConnectUI] = useTonConnectUI();
@@ -12,43 +9,74 @@ const Send: React.FC = () => {
   const [usdtAmount, setUsdtAmount] = useState<number>(0);
 
   return (
-    <div className="container">
-      <TonConnectButton />
-      <br />
-      <div>
-        <span>User-friendly address: {userFriendlyAddress}</span>
-        <br />
-        <span>Raw address: {rawAddress}</span>
-      </div>
-      <br />
+    <div className="flex flex-col items-center justify-center text-primaryText font-Inter p-6">
+      {/* Header */}
+ 
 
-      {/* USDT Amount Input */}
-      <div className="input-group">
-        <label htmlFor="usdtAmount">Enter USDT Amount:</label>
-        <input
-          type="number"
-          id="usdtAmount"
-          value={usdtAmount}
-          onChange={(e) => setUsdtAmount(parseFloat(e.target.value))}
-          placeholder="Amount in USDT"
-          min="0"
-        />
+      {/* Wallet Connect Button */}
+      <div className="mb-6">
+        <TonConnectButton />
       </div>
 
-      <div className="button-group">
-        <button onClick={() => handleSendTon(tonConnectUI)}>Send TON</button>
+      {/* Address Display (Only if Connected) */}
+      {userFriendlyAddress && rawAddress ? (
+        <section className="bg-bgDark2 shadow-lg rounded-lg p-6 w-full max-w-md">
+          <h2 className="text-xl font-semibold text-primaryColor mb-4">
+            Wallet Information
+          </h2>
+          <div className="space-y-4">
+            <div>
+              <p className="text-lg font-semibold">User-friendly Address:</p>
+              <div className="mt-2 p-2 bg-bgDark3 rounded-md border border-mainBorder overflow-x-auto scrollbar-thin scrollbar-thumb-primaryColor scrollbar-track-bgDark3 text-sm text-secondaryText">
+                <span className="whitespace-nowrap">{userFriendlyAddress}</span>
+              </div>
+            </div>
+            <div>
+              <p className="text-lg font-semibold">Raw Address:</p>
+              <div className="mt-2 p-2 bg-bgDark3 rounded-md border border-mainBorder overflow-x-auto scrollbar-thin scrollbar-thumb-primaryColor scrollbar-track-bgDark3 text-sm text-secondaryText">
+                <span className="whitespace-nowrap">{rawAddress}</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : (
+        <div className="bg-bgDark3 text-secondaryText shadow-lg rounded-lg p-6 w-full max-w-md text-center">
+          <p>Please connect your wallet to see wallet information.</p>
+        </div>
+      )}
+
+      {/* USDT Input and Send Button */}
+      <section className="bg-bgDark2 shadow-lg rounded-lg p-6 w-full max-w-md mt-6">
+        <h2 className="text-xl font-semibold text-primaryColor mb-4">Send USDT</h2>
+        <div className="mb-4">
+          <label
+            htmlFor="usdtAmount"
+            className="block text-lg font-medium mb-2"
+          >
+            Enter USDT Amount:
+          </label>
+          <input
+            type="number"
+            id="usdtAmount"
+            value={usdtAmount}
+            onChange={(e) => setUsdtAmount(parseFloat(e.target.value))}
+            placeholder="Amount in USDT"
+            min="0"
+            className="w-full px-4 py-2 border border-mainBorder bg-bgDark3 text-primaryText rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primaryColor focus:border-primaryColor"
+          />
+        </div>
         <button
           onClick={() => handleSendUsdt(tonConnectUI, userFriendlyAddress, usdtAmount)}
-          disabled={usdtAmount <= 0} // Disable if amount is not valid
+          disabled={!userFriendlyAddress || usdtAmount <= 0}
+          className={`w-full px-6 py-3 rounded-md text-lg font-medium transition ${
+            userFriendlyAddress && usdtAmount > 0
+              ? "bg-primaryColor text-primaryText hover:bg-secondaryColor focus:ring-2 focus:ring-primaryColor"
+              : "bg-bgDark3 text-secondaryText cursor-not-allowed"
+          }`}
         >
           Send USDT
         </button>
-        <button
-          onClick={() => handleSendNot(tonConnectUI, userFriendlyAddress)}
-        >
-          Send NOT
-        </button>
-      </div>
+      </section>
     </div>
   );
 };

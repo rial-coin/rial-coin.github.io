@@ -13,5 +13,7 @@ export const Buy = () => {
       <TonConnectUIProvider manifestUrl={manifestUrl}>
         <Send client:only="react" />
       </TonConnectUIProvider>
+
+      
   );
 };
