@@ -1,0 +1,21 @@
+---
+import { Footer } from "../../components/Footer";
+import { Navbar } from "../../components/Navbar";
+import { ScrollUpButton } from "../../components/ScrollUpButton";
+import Layout from "../../layouts/Layout.astro";
+import '../../styles/Theme.css';
+  import { Buy } from "../../components/Buy";
+import { Page } from "../../components/Page";
+  const pageData = {
+  title: "Bitcoin Price",
+  subtitle: "Real-time BTC Price",
+};
+---
+
+<Layout title="Senior Blockchain">
+  <Navbar client:load />
+  <Page pageData={pageData} />
+  <Buy />
+  <Footer />
+  <ScrollUpButton client:load />
+</Layout>
