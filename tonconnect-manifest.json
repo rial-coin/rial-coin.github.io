@@ -1,0 +1,9 @@
+{
+    "name": "RIAL",
+    "description": "Invest in RIAL Coin",
+    "url": "https://rialcoin.io/",
+    "iconUrl": "https://rialcoin.io/logo.png",
+    "bridgeUrl": "https://bridge.tonapi.io/bridge",
+    "termsUrl": "https://rialcoin.io/terms",
+    "privacyUrl": "https://rialcoin.io/privacy"
+  }
