@@ -9,51 +9,53 @@ const Send: React.FC = () => {
   const [usdtAmount, setUsdtAmount] = useState<number>(0);
 
   return (
-    <div className="flex flex-col items-center justify-center text-primaryText font-Inter p-6">
+    <div className="flex flex-col items-center justify-center text-primaryText font-Inter p-8 min-h-screen bg-gradient-to-br from-bgDark1 to-bgDark2">
       {/* Header */}
- 
+      <header className="text-center mb-8">
+        <h1 className="text-4xl font-extrabold text-primaryColor">
+          Rial Coin Exchange
+        </h1>
+        <p className="text-secondaryText text-lg mt-2">
+          Securely connect your wallet and send USDT effortlessly.
+        </p>
+      </header>
 
       {/* Wallet Connect Button */}
-      <div className="mb-6">
+      <div className="mb-8">
         <TonConnectButton />
       </div>
 
       {/* Address Display (Only if Connected) */}
       {userFriendlyAddress && rawAddress ? (
-        <section className="bg-bgDark2 shadow-lg rounded-lg p-6 w-full max-w-md">
-          <h2 className="text-xl font-semibold text-primaryColor mb-4">
-            Wallet Information
-          </h2>
-          <div className="space-y-4">
-            <div>
-              <p className="text-lg font-semibold">User-friendly Address:</p>
-              <div className="mt-2 p-2 bg-bgDark3 rounded-md border border-mainBorder overflow-x-auto scrollbar-thin scrollbar-thumb-primaryColor scrollbar-track-bgDark3 text-sm text-secondaryText">
-                <span className="whitespace-nowrap">{userFriendlyAddress}</span>
-              </div>
+        <section className="bg-gradient-to-r from-bgDark2 to-bgDark3 shadow-lg rounded-lg p-6 w-full max-w-lg transform transition hover:scale-105">
+          <div className="flex items-center space-x-4">
+            <div className="bg-primaryColor text-primaryText rounded-full p-3">
+              <i className="fas fa-wallet text-xl"></i>
             </div>
             <div>
-              <p className="text-lg font-semibold">Raw Address:</p>
-              <div className="mt-2 p-2 bg-bgDark3 rounded-md border border-mainBorder overflow-x-auto scrollbar-thin scrollbar-thumb-primaryColor scrollbar-track-bgDark3 text-sm text-secondaryText">
-                <span className="whitespace-nowrap">{rawAddress}</span>
-              </div>
+              <h2 className="text-2xl font-bold text-primaryColor">
+                Wallet Connected
+              </h2>
+              <p className="text-secondaryText text-sm">
+                Your wallet is successfully connected. Start your transactions now.
+              </p>
             </div>
           </div>
         </section>
       ) : (
-        <div className="bg-bgDark3 text-secondaryText shadow-lg rounded-lg p-6 w-full max-w-md text-center">
-          <p>Please connect your wallet to see wallet information.</p>
+        <div className="bg-gradient-to-r from-bgDark3 to-bgDark2 text-secondaryText shadow-lg rounded-lg p-6 w-full max-w-lg text-center transform transition hover:scale-105">
+          <p className="text-lg">Please connect your wallet to proceed.</p>
         </div>
       )}
 
       {/* USDT Input and Send Button */}
-      <section className="bg-bgDark2 shadow-lg rounded-lg p-6 w-full max-w-md mt-6">
-        <h2 className="text-xl font-semibold text-primaryColor mb-4">Send USDT</h2>
-        <div className="mb-4">
+      <section className="bg-gradient-to-r from-bgDark2 to-bgDark3 shadow-lg rounded-lg p-8 w-full max-w-lg mt-8">
+        <div className="mb-6">
           <label
             htmlFor="usdtAmount"
-            className="block text-lg font-medium mb-2"
+            className="block text-lg font-semibold mb-3 text-primaryText"
           >
-            Enter USDT Amount:
+            Enter USDT Amount
           </label>
           <input
             type="number"
@@ -64,16 +66,20 @@ const Send: React.FC = () => {
             min="0"
             className="w-full px-4 py-2 border border-mainBorder bg-bgDark3 text-primaryText rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primaryColor focus:border-primaryColor"
           />
+          <p className="text-sm text-secondaryText mt-2">
+      By sending this amount, you will receive <span className="font-bold text-primaryColor">{usdtAmount || 0}</span> Rial Coins.
+    </p>
         </div>
         <button
           onClick={() => handleSendUsdt(tonConnectUI, userFriendlyAddress, usdtAmount)}
           disabled={!userFriendlyAddress || usdtAmount <= 0}
-          className={`w-full px-6 py-3 rounded-md text-lg font-medium transition ${
+          className={`w-full px-6 py-3 rounded-md text-lg font-semibold transition-transform transform ${
             userFriendlyAddress && usdtAmount > 0
-              ? "bg-primaryColor text-primaryText hover:bg-secondaryColor focus:ring-2 focus:ring-primaryColor"
-              : "bg-bgDark3 text-secondaryText cursor-not-allowed"
+              ? "bg-primaryColor text-white hover:bg-secondaryColor hover:scale-105 focus:ring-4 focus:ring-primaryColor"
+              : "bg-bgDark4 text-secondaryText cursor-not-allowed"
           }`}
         >
+          <i className="fas fa-paper-plane mr-2"></i>
           Send USDT
         </button>
       </section>
