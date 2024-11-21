@@ -2,13 +2,13 @@ import { toNano, beginCell, Address } from 'ton';
  import {
   RECEIVER_ADDRESS,
   getTxValidUntil,
-  NOT_AMOUNT,
+  RIAL_AMOUNT,
   TON_FEE,
-  NOT_MASTER_ADDRESS,
+  RIAL_MASTER_ADDRESS,
 } from '../utils/transactionConfig';
 import { getJettonWalletAddress } from '../utils/getJettonWalletAddress';
 
-export const handleSendNot = async (
+export const handleSendRial = async (
   tonConnectUI: any,
   userFriendlyAddress: string | null,
 ) => {
@@ -19,13 +19,13 @@ export const handleSendNot = async (
 
   const forwardPayload = beginCell()
     .storeUint(0, 32) // 0 opcode means we have a comment
-    .storeStringTail('NOT Pass payment!')
+    .storeStringTail('RIAL Pass payment!')
     .endCell();
 
-  const notMessageBody = beginCell()
+  const rialMessageBody = beginCell()
     .storeUint(0xf8a7ea5, 32) // opcode for jetton transfer
     .storeUint(0, 64) // query id
-    .storeCoins(NOT_AMOUNT)
+    .storeCoins(RIAL_AMOUNT)
     .storeAddress(RECEIVER_ADDRESS)
     .storeAddress(Address.parse(userFriendlyAddress)) // response destination
     .storeBit(0) // no custom payload
@@ -39,13 +39,13 @@ export const handleSendNot = async (
   if (userFriendlyAddress) {
     const result = await getJettonWalletAddress(
       userFriendlyAddress,
-      NOT_MASTER_ADDRESS,
+      RIAL_MASTER_ADDRESS,
     );
     jettonWalletAddress = result.walletAddress;
     jettonBalance = result.balance;
   }
 
-  if (!jettonBalance || jettonBalance < NOT_AMOUNT) {
+  if (!jettonBalance || jettonBalance < RIAL_AMOUNT) {
     alert('Insufficient funds');
     return;
   }
@@ -61,7 +61,7 @@ export const handleSendNot = async (
       {
         address: jettonWalletAddress.toString(),
         amount: TON_FEE.toString(),
-        payload: notMessageBody.toBoc().toString('base64'),
+        payload: rialMessageBody.toBoc().toString('base64'),
       },
     ],
   };
