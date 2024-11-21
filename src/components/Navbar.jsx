@@ -69,10 +69,10 @@ export const Navbar = () => {
               className="text-white main-border-gray rounded-xl
            bg-bgDark2 hover:bg-bgDark3  border-gray-700 pl-6 pr-8 pt-2 pb-2 text-sm flex"
               href="#"
-              aria-label="Connect Wallet"
+              aria-label="Invest in RIAL Coin"
             >
               <WalletIcon />
-              <span className="pt-px">Connect Wallet</span>
+              <span className="pt-px">Invest in RIAL Coin</span>
             </a>
           </div>
         </motion.div>
@@ -112,11 +112,11 @@ export const Navbar = () => {
               ))}
               <a
                 className="outlined-button pl-6 pr-8 pt-2 pb-2  flex"
-                href="https://github.com/matt765/Tidestream"
+                href="/"
                 target="_blank"
               >
-                <GithubIcon />
-                Source code
+                <WalletIcon/>
+                Invest in RIAL Coin
               </a>
             </div>
           </motion.div>
