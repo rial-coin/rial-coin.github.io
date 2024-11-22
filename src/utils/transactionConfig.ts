@@ -5,7 +5,7 @@ export const getTxValidUntil = () => Math.floor(Date.now() / 1000) + 600;
 
 // addresses
 export const RECEIVER_ADDRESS = Address.parse(
-  'UQDcvCRqM7EjF61pCXIhbKrRChCRKU_a-v8r9P3A1iwMc8Tz',
+  'UQCUS0q4DJLKBL_dxO492OFd3H-ajpB0_wUfamWNHne1_ehf',
 );
 export const USDT_MASTER_ADDRESS =
   'EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs';
