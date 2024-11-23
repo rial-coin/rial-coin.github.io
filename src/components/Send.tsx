@@ -68,7 +68,7 @@ const Send: React.FC = () => {
         {Object.entries(timeLeft).map(([unit, value]) => (
           <div
             key={unit}
-            className="timer-box bg-primaryColor text-white rounded-lg p-4 w-24 sm:w-28 lg:w-32 shadow-md flex flex-col items-center mx-2"
+            className="timer-box bg-primaryColor text-white rounded-lg p-4 w-24 sm:w-28 lg:w-32 shadow-md flex flex-col items-center mx-2 mt-4"
           >
             <p className="text-3xl sm:text-4xl font-extrabold">{value}</p>
             <p className="text-sm sm:text-base mt-1 uppercase tracking-wide">{unit}</p>
