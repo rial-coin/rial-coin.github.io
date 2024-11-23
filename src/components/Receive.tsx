@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { TonConnectButton, useTonConnectUI, useTonAddress } from "@tonconnect/ui-react";
 import { handleSendRial } from "../payments/sendRial";
+import { CustomConnectButton } from "./CustomConnectButton";
 
 const Receive: React.FC = () => {
   const [tonConnectUI] = useTonConnectUI();
@@ -21,10 +22,8 @@ const Receive: React.FC = () => {
       </header>
 
       {/* Wallet Connect Button */}
-      <div className="mb-8">
-        <TonConnectButton />
-      </div>
-
+         <CustomConnectButton/>
+ 
       {/* Address Display (Only if Connected) */}
       {userFriendlyAddress && rawAddress ? (
         <section className="bg-gradient-to-r from-bgDark2 to-bgDark3 shadow-lg rounded-lg p-6 w-full max-w-lg transform transition hover:scale-105">

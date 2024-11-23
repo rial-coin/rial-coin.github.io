@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { gsap } from "gsap";
 import { TonConnectButton, useTonConnectUI, useTonAddress } from "@tonconnect/ui-react";
 import { handleSendUsdt } from "../payments/sendUsdt";
-
+import { CustomConnectButton } from "./CustomConnectButton"; 
 interface TimeLeft {
   days: number;
   hours: number;
@@ -77,11 +77,10 @@ const Send: React.FC = () => {
       </div>
 
       {/* Wallet Connect Button */}
-      <div className="mb-8">
-        <TonConnectButton />
-      </div>
-
-      {/* Address Display (Only if Connected) */}
+         <CustomConnectButton/>
+ 
+ 
+       {/* Address Display (Only if Connected) */}
       {userFriendlyAddress && rawAddress ? (
         <section className="bg-gradient-to-r from-bgDark2 to-bgDark3 shadow-lg rounded-lg p-6 w-full max-w-lg transform transition hover:scale-105">
           <div className="flex items-center space-x-4">
