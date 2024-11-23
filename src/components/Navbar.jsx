@@ -15,7 +15,7 @@ export const Navbar = () => {
 
   return (
     <nav
-      className="w-full h-20 fixed bg-[#027dbc] z-50 flex items-center justify-center"
+      className="w-full h-20 flex flex-col justify-center items-center fixed bg-bgDark1 lg:bg-bgDarkTransparent z-40 lg:backdrop-blur-xl"
       aria-label="Main navigation"
     >
       <div className="w-full max-w-[1280px] flex justify-between items-center px-4 md:px-8">
@@ -26,8 +26,8 @@ export const Navbar = () => {
           transition={{ duration: 0.3 }}
         >
           <a href="/#home" aria-label="Home" className="flex items-center">
-            <RialLogo className="text-white text-4xl mr-2" />
-            <span className="text-white font-bold text-lg">Rial Coin</span>
+            <RialLogo className="text-white text-4xl mr-4" />
+            <span className="text-white font-bold text-lg ml-4">Rial Coin</span>
           </a>
         </motion.div>
 
@@ -60,7 +60,7 @@ export const Navbar = () => {
           <a
             href="/buy"
             aria-label="Invest in Rial Coin"
-            className="flex items-center bg-white text-[#027dbc] hover:text-white hover:bg-gray-800 px-6 py-2 rounded-lg font-medium transition"
+            className="text-white main-border-gray rounded-xl bg-bgDark2 hover:bg-bgDark3 border-gray-700 pl-6 pr-8 pt-2 pb-2 text-sm flex"
           >
             <WalletIcon className="mr-2" />
             Invest in Rial Coin
@@ -103,8 +103,9 @@ export const Navbar = () => {
             <a
               href="/buy"
               target="_blank"
-              className="flex items-center bg-white text-[#027dbc] hover:text-white hover:bg-gray-800 px-6 py-2 rounded-lg font-medium mt-4 transition"
-              aria-label="Invest in Rial Coin"
+           
+              className="text-white main-border-gray rounded-xl bg-bgDark2 hover:bg-bgDark3 border-gray-700 pl-6 pr-8 pt-2 pb-2 text-sm flex"
+                        aria-label="Invest in Rial Coin"
             >
               <WalletIcon className="mr-2" />
               Invest in Rial Coin
