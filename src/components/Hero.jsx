@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 export const Hero = () => {
   return (
     <section
-    className="w-screen  flex justify-center items-center bg-bgDark1 mb-[28vw] md:mb-[18vw] lg:mb-[10vw] xl:mb-[4vw] 2xl:mb-60 hero-bg-gradient pb-24 sm:pb-32 md:pb-44 lg:pb-0"
+    className="w-screen  flex justify-center items-center bg-bgDark1 mb-[12vw] md:mb-[10vw] lg:mb-[6vw] xl:mb-[4vw] 2xl:mb-30 hero-bg-gradient pb-24 sm:pb-8 md:pb-12 lg:pb-0"
     id="home"
   >
       <div className="w-full max-w-6xl flex flex-col justify-center items-center pt-20 md:pt-28 lg:pt-32 text-center">
