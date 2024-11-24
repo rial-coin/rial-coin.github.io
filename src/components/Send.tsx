@@ -141,7 +141,7 @@ const Send: React.FC = () => {
       <section className="bg-gradient-to-r from-bgDark2 to-bgDark3 shadow-lg rounded-lg p-8 w-full max-w-lg mt-8">
         <a
           href="/sell"
-          className="block w-full px-6 py-3 mt-6 rounded-md text-lg font-semibold text-center bg-red-600 text-white hover:bg-red-700 transition-transform transform hover:scale-105 focus:ring-4 focus:ring-red-400"
+          className="block w-full px-6 py-3 rounded-md text-lg font-semibold text-center bg-red-600 text-white hover:bg-red-700 transition-transform transform hover:scale-105 focus:ring-4 focus:ring-red-400"
         >
           Go to Sell Page
         </a>

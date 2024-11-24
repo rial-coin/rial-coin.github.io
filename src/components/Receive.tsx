@@ -11,15 +11,7 @@ const Receive: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center text-primaryText font-Inter p-8 min-h-screen bg-gradient-to-br from-bgDark1 to-bgDark2">
-      {/* Header */}
-      <header className="text-center mb-8">
-        <h1 className="text-4xl font-extrabold text-primaryColor">
-          Rial Coin Exchange
-        </h1>
-        <p className="text-secondaryText text-lg mt-2">
-          Securely connect your wallet and send RIAL effortlessly.
-        </p>
-      </header>
+
 
       {/* Wallet Connect Button */}
          <CustomConnectButton/>
@@ -86,7 +78,7 @@ const Receive: React.FC = () => {
       <section className="bg-gradient-to-r from-bgDark2 to-bgDark3 shadow-lg rounded-lg p-8 w-full max-w-lg mt-8">
   <a
     href="/buy"
-    className="block w-full px-6 py-3 mt-6 rounded-md text-lg font-semibold text-center bg-green-600 text-white hover:bg-green-700 transition-transform transform hover:scale-105 focus:ring-4 focus:ring-green-400"
+    className="block w-full px-6 py-3 rounded-md text-lg font-semibold text-center bg-green-600 text-white hover:bg-green-700 transition-transform transform hover:scale-105 focus:ring-4 focus:ring-green-400"
   >
     Go to Buy Page
   </a>
