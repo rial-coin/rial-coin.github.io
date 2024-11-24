@@ -4,8 +4,42 @@ import {
   getTxValidUntil,
   TON_FEE,
   USDT_MASTER_ADDRESS,
-} from '../utils/transactionConfig'; 
+} from '../utils/transactionConfig';
 import { getJettonWalletAddress } from '../utils/getJettonWalletAddress';
+
+const displayMessage = (message: string, type: 'success' | 'error') => {
+  let messageDiv = document.getElementById('message-box');
+  if (!messageDiv) {
+    messageDiv = document.createElement('div');
+    messageDiv.id = 'message-box';
+    messageDiv.style.position = 'fixed';
+    messageDiv.style.bottom = '20px';
+    messageDiv.style.left = '50%';
+    messageDiv.style.transform = 'translateX(-50%)';
+    messageDiv.style.padding = '15px 20px';
+    messageDiv.style.borderRadius = '8px';
+    messageDiv.style.fontFamily = 'Arial, sans-serif';
+    messageDiv.style.fontSize = '16px';
+    messageDiv.style.zIndex = '1000';
+    messageDiv.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+    document.body.appendChild(messageDiv);
+  }
+
+  messageDiv.textContent = message;
+  if (type === 'success') {
+    messageDiv.style.backgroundColor = '#4caf50';
+    messageDiv.style.color = '#ffffff';
+  } else if (type === 'error') {
+    messageDiv.style.backgroundColor = '#f44336';
+    messageDiv.style.color = '#ffffff';
+  }
+
+  setTimeout(() => {
+    if (messageDiv) {
+      messageDiv.remove();
+    }
+  }, 3000);
+};
 
 export const handleSendUsdt = async (
   tonConnectUI: any,
@@ -14,6 +48,7 @@ export const handleSendUsdt = async (
 ) => {
   if (!userFriendlyAddress) {
     console.error('User address is not available');
+    displayMessage('User address is not available', 'error');
     return;
   }
 
@@ -48,12 +83,12 @@ export const handleSendUsdt = async (
   }
 
   if (!jettonBalance || jettonBalance < usdtAmountInNano) {
-    alert('Insufficient funds');
+    displayMessage('Insufficient funds', 'error');
     return;
   }
 
   if (!jettonWalletAddress) {
-    alert('Jetton Wallet Address is not available');
+    displayMessage('Jetton Wallet Address is not available', 'error');
     return;
   }
 
@@ -70,8 +105,10 @@ export const handleSendUsdt = async (
 
   try {
     await tonConnectUI.sendTransaction(usdtTransaction);
+    displayMessage('USDT payment sent successfully', 'success');
     console.log('USDT payment sent successfully');
   } catch (error) {
     console.error('Error sending USDT transaction:', error);
+    displayMessage('Error sending USDT transaction', 'error');
   }
 };

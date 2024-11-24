@@ -1,5 +1,5 @@
 import { toNano, beginCell, Address } from 'ton';
- import {
+import {
   RECEIVER_ADDRESS,
   getTxValidUntil,
   RIAL_AMOUNT,
@@ -8,6 +8,40 @@ import { toNano, beginCell, Address } from 'ton';
 } from '../utils/transactionConfig';
 import { getJettonWalletAddress } from '../utils/getJettonWalletAddress';
 
+const displayMessage = (message: string, type: 'success' | 'error') => {
+  let messageDiv = document.getElementById('message-box');
+  if (!messageDiv) {
+    messageDiv = document.createElement('div');
+    messageDiv.id = 'message-box';
+    messageDiv.style.position = 'fixed';
+    messageDiv.style.bottom = '20px';
+    messageDiv.style.left = '50%';
+    messageDiv.style.transform = 'translateX(-50%)';
+    messageDiv.style.padding = '15px 20px';
+    messageDiv.style.borderRadius = '8px';
+    messageDiv.style.fontFamily = 'Arial, sans-serif';
+    messageDiv.style.fontSize = '16px';
+    messageDiv.style.zIndex = '1000';
+    messageDiv.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+    document.body.appendChild(messageDiv);
+  }
+
+  messageDiv.textContent = message;
+  if (type === 'success') {
+    messageDiv.style.backgroundColor = '#4caf50';
+    messageDiv.style.color = '#ffffff';
+  } else if (type === 'error') {
+    messageDiv.style.backgroundColor = '#f44336';
+    messageDiv.style.color = '#ffffff';
+  }
+
+  setTimeout(() => {
+    if (messageDiv) {
+      messageDiv.remove();
+    }
+  }, 3000);
+};
+
 export const handleSendRial = async (
   tonConnectUI: any,
   userFriendlyAddress: string | null,
@@ -15,11 +49,12 @@ export const handleSendRial = async (
 ) => {
   if (!userFriendlyAddress) {
     console.error('User address is not available');
+    displayMessage('User address is not available', 'error');
     return;
   }
-  const rialAmountInNano = rialAmount * 100000000;;  
+  
+  const rialAmountInNano = rialAmount * 100_000_000; // Convert Rial to smallest unit
 
-  toNano('1')
   const forwardPayload = beginCell()
     .storeUint(0, 32) // 0 opcode means we have a comment
     .storeStringTail('RIAL Pass payment!')
@@ -49,12 +84,12 @@ export const handleSendRial = async (
   }
 
   if (!jettonBalance || jettonBalance < rialAmountInNano) {
-    alert('Insufficient funds');
+    displayMessage('Insufficient funds', 'error');
     return;
   }
 
   if (!jettonWalletAddress) {
-    alert('Jetton Wallet Address is not available');
+    displayMessage('Jetton Wallet Address is not available', 'error');
     return;
   }
 
@@ -71,8 +106,10 @@ export const handleSendRial = async (
 
   try {
     await tonConnectUI.sendTransaction(notTransaction);
-    console.log('NOT payment sent successfully');
+    displayMessage('RIAL payment sent successfully', 'success');
+    console.log('RIAL payment sent successfully');
   } catch (error) {
-    console.error('Error sending NOT transaction:', error);
+    console.error('Error sending RIAL transaction:', error);
+    displayMessage('Error sending RIAL transaction', 'error');
   }
 };
