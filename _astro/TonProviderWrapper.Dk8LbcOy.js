@@ -1,0 +1,1 @@
+import{j as r}from"./jsx-runtime.PRPpl5vZ.js";import"./index.RYns6xqu.js";import{T as t}from"./index.C-FeqKXz.js";const s=({children:o})=>r.jsx(t,{manifestUrl:"https://rialcoin.io/tonconnect-manifest.json",children:o});export{s as TonProviderWrapper};
