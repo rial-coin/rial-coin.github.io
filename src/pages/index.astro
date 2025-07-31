@@ -12,18 +12,21 @@ import { Brands } from '../components/Brands.jsx'
 import { Blog } from '../components/Blog'
 import { Footer } from '../components/Footer.jsx'
 import { ScrollUpButton } from '../components/ScrollUpButton'
+import { TonProviderWrapper } from '../components/TonProviderWrapper'
 import '../styles/Theme.css'
 import '../styles/Diagonals.css'
 ---
 
 <Layout title="Rial Coin">
-  <Navbar client:load />
-  <Hero client:load />
-  <Features1 client:load />
-  <Features2 client:load />
-  <FeaturesDiagonal client:load />
-  <Tokenomics client:load />
-  <FAQ client:load /> 
-  <Footer />
-  <ScrollUpButton client:load />
+  <TonProviderWrapper client:load>
+    <Navbar client:load />
+    <Hero client:load />
+    <Features1 client:load />
+    <Features2 client:load />
+    <FeaturesDiagonal client:load />
+    <Tokenomics client:load />
+    <FAQ client:load /> 
+    <Footer />
+    <ScrollUpButton client:load />
+  </TonProviderWrapper>
 </Layout>

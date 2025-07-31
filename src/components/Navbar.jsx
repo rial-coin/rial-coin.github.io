@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import { RialLogo } from "../assets/logos/RialLogo";
 import { WalletIcon } from "../assets/icons/WalletIcon";
+import { WalletInfo } from "./WalletInfo";
 
 const navbarLinks = [
   { label: "Home", href: "/#home", ariaLabel: "Home" },
@@ -83,6 +84,9 @@ export const Navbar = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
+            {/* Wallet Info Component */}
+            <WalletInfo />
+            
             <a
               href="/buy"
               aria-label="Invest in Rial Coin"

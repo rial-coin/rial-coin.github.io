@@ -84,7 +84,27 @@ export const CustomConnectButton: React.FC = () => {
         </div>
       )}
       
-      {/* Main Connect Button */}
+      {/* Connected Wallet Info */}
+      {userFriendlyAddress && !isConnecting && (
+        <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-400/30 rounded-2xl p-4 mb-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+              <div>
+                <div className="text-green-400 font-semibold text-sm">Wallet Connected</div>
+                <div className="text-white font-mono text-xs">
+                  {userFriendlyAddress.slice(0, 8)}...{userFriendlyAddress.slice(-8)}
+                </div>
+              </div>
+            </div>
+            <svg className="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+          </div>
+        </div>
+      )}
+
+      {/* Main Connect/Disconnect Button */}
       <button
         onClick={handleConnect}
         disabled={isConnecting}
@@ -92,8 +112,8 @@ export const CustomConnectButton: React.FC = () => {
           isConnecting
             ? "bg-gray-600 text-gray-300 cursor-not-allowed"
             : userFriendlyAddress
-            ? "bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 focus:ring-red-400"
-            : "bg-gradient-to-r from-purple-500 to-blue-500 text-white hover:from-purple-600 hover:to-blue-600 focus:ring-purple-400"
+            ? "bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 focus:ring-red-400 shadow-lg"
+            : "bg-gradient-to-r from-primaryColor to-blue-500 text-white hover:from-primaryColor/80 hover:to-blue-600 focus:ring-primaryColor/50 shadow-lg"
         }`}
         aria-label={userFriendlyAddress ? "Disconnect Wallet" : "Connect Wallet"}
       >
@@ -103,12 +123,19 @@ export const CustomConnectButton: React.FC = () => {
               <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
               <span>Connecting...</span>
             </>
+          ) : userFriendlyAddress ? (
+            <>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+              <span>Disconnect Wallet</span>
+            </>
           ) : (
             <>
-              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4zM18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clipRule="evenodd" />
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
-              <span>{userFriendlyAddress ? "Disconnect Wallet" : "Connect Wallet"}</span>
+              <span>Connect Wallet</span>
             </>
           )}
         </div>
