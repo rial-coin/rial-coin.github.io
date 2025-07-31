@@ -7,6 +7,16 @@ interface PercentageSelectorProps {
   tokenSymbol: string;
 }
 
+// Format balance with proper decimals
+const formatBalance = (amount: number, decimals: number = 2): string => {
+  if (amount === 0) return '0';
+  if (amount < 0.001) return '<0.001';
+  if (amount < 1) return amount.toFixed(4);
+  if (amount < 1000) return amount.toFixed(decimals);
+  if (amount < 1000000) return (amount / 1000).toFixed(1) + 'K';
+  return (amount / 1000000).toFixed(1) + 'M';
+};
+
 export const PercentageSelector: React.FC<PercentageSelectorProps> = ({ 
   balance, 
   onAmountSelect, 
@@ -30,7 +40,7 @@ export const PercentageSelector: React.FC<PercentageSelectorProps> = ({
       <div className="flex justify-between items-center">
         <span className="text-secondaryText text-sm">Quick Select</span>
         <span className="text-secondaryText text-sm">
-          Balance: {balance.toFixed(4)} {tokenSymbol}
+          Balance: {formatBalance(balance)} {tokenSymbol}
         </span>
       </div>
       
@@ -60,7 +70,7 @@ export const PercentageSelector: React.FC<PercentageSelectorProps> = ({
       
       <div className="text-center">
         <span className="text-secondaryText text-xs">
-          Selected: {getSelectedPercentage()}% ({selectedAmount.toFixed(4)} {tokenSymbol})
+          Selected: {getSelectedPercentage()}% ({formatBalance(selectedAmount)} {tokenSymbol})
         </span>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTonAddress } from '@tonconnect/ui-react';
+import { getAllBalances, formatBalance, getUsdValue } from '../utils/tonBalances';
 
 interface BalanceDisplayProps {
   onBalanceUpdate?: (usdtBalance: number, rialBalance: number, tonBalance: number) => void;
@@ -13,6 +14,7 @@ export const BalanceDisplay: React.FC<BalanceDisplayProps> = ({ onBalanceUpdate 
     ton: 0
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   useEffect(() => {
     if (userFriendlyAddress) {
@@ -25,18 +27,14 @@ export const BalanceDisplay: React.FC<BalanceDisplayProps> = ({ onBalanceUpdate 
     
     setIsLoading(true);
     try {
-      // TODO: Implement actual balance fetching
-      // This is a mock implementation
-      const mockBalances = {
-        usdt: Math.random() * 1000, // Mock USDT balance
-        rial: Math.random() * 50000, // Mock RIAL balance
-        ton: Math.random() * 10 // Mock TON balance
-      };
+      const newBalances = await getAllBalances(userFriendlyAddress);
       
-      setBalances(mockBalances);
-      onBalanceUpdate?.(mockBalances.usdt, mockBalances.rial, mockBalances.ton);
+      setBalances(newBalances);
+      setLastUpdated(new Date());
+      onBalanceUpdate?.(newBalances.usdt, newBalances.rial, newBalances.ton);
     } catch (error) {
       console.error('Error fetching balances:', error);
+      // In case of error, keep previous balances
     } finally {
       setIsLoading(false);
     }
@@ -49,7 +47,14 @@ export const BalanceDisplay: React.FC<BalanceDisplayProps> = ({ onBalanceUpdate 
   return (
     <div className="bg-gradient-to-br from-bgDark2/80 to-bgDark3/80 backdrop-blur-xl rounded-2xl border border-white/10 p-6">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-white font-bold text-lg">Your Balances</h3>
+        <div>
+          <h3 className="text-white font-bold text-lg">Your Balances</h3>
+          {lastUpdated && (
+            <p className="text-secondaryText text-xs">
+              Updated: {lastUpdated.toLocaleTimeString()}
+            </p>
+          )}
+        </div>
         <button 
           onClick={fetchBalances}
           disabled={isLoading}
@@ -76,10 +81,10 @@ export const BalanceDisplay: React.FC<BalanceDisplayProps> = ({ onBalanceUpdate 
           </div>
           <div className="text-right">
             <div className="text-white font-semibold">
-              {isLoading ? '...' : balances.usdt.toFixed(2)}
+              {isLoading ? '...' : formatBalance(balances.usdt)}
             </div>
             <div className="text-secondaryText text-xs">
-              ≈ ${isLoading ? '...' : balances.usdt.toFixed(2)}
+              ≈ ${isLoading ? '...' : formatBalance(getUsdValue(balances.usdt, 'USDT'), 2)}
             </div>
           </div>
         </div>
@@ -97,10 +102,10 @@ export const BalanceDisplay: React.FC<BalanceDisplayProps> = ({ onBalanceUpdate 
           </div>
           <div className="text-right">
             <div className="text-white font-semibold">
-              {isLoading ? '...' : balances.rial.toFixed(2)}
+              {isLoading ? '...' : formatBalance(balances.rial)}
             </div>
             <div className="text-secondaryText text-xs">
-              ≈ ${isLoading ? '...' : balances.rial.toFixed(2)}
+              ≈ ${isLoading ? '...' : formatBalance(getUsdValue(balances.rial, 'RIAL'), 2)}
             </div>
           </div>
         </div>
@@ -118,10 +123,10 @@ export const BalanceDisplay: React.FC<BalanceDisplayProps> = ({ onBalanceUpdate 
           </div>
           <div className="text-right">
             <div className="text-white font-semibold">
-              {isLoading ? '...' : balances.ton.toFixed(4)}
+              {isLoading ? '...' : formatBalance(balances.ton)}
             </div>
             <div className="text-secondaryText text-xs">
-              ≈ ${isLoading ? '...' : (balances.ton * 2.5).toFixed(2)}
+              ≈ ${isLoading ? '...' : formatBalance(getUsdValue(balances.ton, 'TON'), 2)}
             </div>
           </div>
         </div>
