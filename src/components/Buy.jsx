@@ -1,19 +1,17 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { InvitationModal } from "./InvitationModal";
-import dashboard from "../assets/images/dashboard.jpg";
-import { TonConnectUIProvider, TonConnectButton } from "@tonconnect/ui-react";
+import { TonConnectProvider } from "./TonConnectProvider";
+import { WalletCheck } from "./WalletCheck";
 import Send from "./Send";
 
 export const Buy = () => {
-  const manifestUrl = "https://rialcoin.io/tonconnect-manifest.json";
-
   return (
-
-      <TonConnectUIProvider manifestUrl={manifestUrl}>
-        <Send client:only="react" />
-      </TonConnectUIProvider>
-
-      
+    <section className="w-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 min-h-screen">
+      <div className="container mx-auto px-4 py-8">
+        <WalletCheck>
+          <TonConnectProvider>
+            <Send />
+          </TonConnectProvider>
+        </WalletCheck>
+      </div>
+    </section>
   );
 };

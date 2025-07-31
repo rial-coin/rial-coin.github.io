@@ -1,105 +1,112 @@
-import { FacebookIcon } from "../assets/icons/FacebookIcon";
-import { InstagramIcon } from "../assets/icons/InstagramIcon";
-import { RialLogo } from "../assets/logos/RialLogo";
-import { TwitterIcon } from "../assets/icons/TwitterIcon";
-
-const footerData = [
-  {
-    title: "Products",
-    items: ["Services", "About Us", "News and Stories", "Roadmap"],
-  },
-  {
-    title: "Important Links",
-    items: [
-      "Organization Team",
-      "Our Journeys",
-      "Pricing Plans",
-      "Roadmap",
-      "Terms & Conditions",
-      "Privacy Policy",
-    ],
-  },
-  {
-    title: "Company",
-    items: ["About Us", "Jobs", "Press", "Contact Us"],
-  },
-];
-
 export const Footer = () => {
   return (
-    <footer aria-label="Site footer" className="bg-bgDark1 pt-10 lg:pt-20 pb-8 lg:pb-16">
-      <div className="container mx-auto px-4 w-4/5 md:w-11/12 lg:w-10/12 xl:w-4/5 2xl:w-2/3">
-        <div className="flex flex-wrap justify-between">
+    <footer className="bg-slate-950 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Main Footer Content */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Logo and About Section */}
-          <div className="w-full lg:w-1/3 mb-16 lg:mb-0 text-center lg:text-left">
-            <div className="flex justify-center lg:justify-start items-center mb-4">
-              <div className="text-white mr-2 text-6xl">
-                <RialLogo />
+          <div className="lg:col-span-1">
+            <div className="flex items-center mb-6">
+              <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center mr-3">
+                <span className="text-white font-bold text-xl">R</span>
               </div>
-              <div className="text-white font-['Inter'] font-bold text-xl">
-                Rial Coin
-              </div>
+              <span className="text-white font-bold text-2xl">Rial Coin</span>
             </div>
-            <p className="mb-8 text-gray-400 leading-loose">
-              Rial Coin empowers global transactions with its blockchain-based
-              solutions, ensuring security, transparency, and efficiency. Join
-              us in transforming the digital economy.
+            
+            <p className="text-gray-300 text-lg leading-relaxed mb-6">
+              Rial Coin empowers global transactions with blockchain-based solutions, 
+              ensuring security, transparency, and efficiency.
             </p>
-            <div className="flex justify-center lg:justify-start space-x-4">
+
+            {/* Social Links */}
+            <div className="flex space-x-4">
               <a
                 href="#"
-                aria-label="Facebook"
-                className="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-gray-600 transition"
+                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-500 transition-colors duration-300"
               >
-                <FacebookIcon />
+                <span className="text-white">📘</span>
               </a>
               <a
                 href="#"
-                aria-label="Twitter"
-                className="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-gray-600 transition"
+                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-500 transition-colors duration-300"
               >
-                <TwitterIcon />
+                <span className="text-white">🐦</span>
               </a>
               <a
                 href="https://www.instagram.com/rialcoin.io"
-                aria-label="Instagram"
-                className="w-10 h-10 flex items-center justify-center bg-gray-700 rounded-full hover:bg-gray-600 transition"
+                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-500 transition-colors duration-300"
               >
-                <InstagramIcon />
+                <span className="text-white">📷</span>
               </a>
             </div>
           </div>
 
-          {/* Links Section */}
-          <div className="w-full lg:w-2/3 flex flex-wrap justify-between lg:pl-16">
-            {footerData.map((section, index) => (
-              <div
-                key={`footer-section-${index}`}
-                className="w-full md:w-1/3 lg:w-auto mb-8 lg:mb-0"
-              >
-                <h3 className="mb-6 text-2xl font-bold text-primaryText">
-                  {section.title}
-                </h3>
-                <ul>
-                  {section.items.map((item, itemIndex) => (
-                    <li key={`${item}-${itemIndex}`} className="mb-4">
-                      <a
-                        href="#"
-                        className="text-gray-400 hover:text-gray-300 transition"
-                        aria-label={item}
-                      >
-                        {item}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          {/* Products */}
+          <div>
+            <h3 className="text-white font-bold text-xl mb-6">Products</h3>
+            <ul className="space-y-3">
+              <li><a href="/buy" className="text-gray-300 hover:text-white transition-colors">Buy Rial Coin</a></li>
+              <li><a href="/sell" className="text-gray-300 hover:text-white transition-colors">Sell Rial Coin</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Wallet</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Roadmap</a></li>
+            </ul>
+          </div>
+
+          {/* Important Links */}
+          <div>
+            <h3 className="text-white font-bold text-xl mb-6">Important Links</h3>
+            <ul className="space-y-3">
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Team</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Terms & Conditions</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
+              <li><a href="#FAQ" className="text-gray-300 hover:text-white transition-colors">FAQ</a></li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h3 className="text-white font-bold text-xl mb-6">Contact</h3>
+            <ul className="space-y-3">
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Partnership</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Press</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Community</a></li>
+            </ul>
           </div>
         </div>
-      </div>
-      <div className="mt-8 text-center text-gray-400 text-sm">
-        © 2024 Rial Coin. All rights reserved.
+
+        {/* Newsletter */}
+        <div className="border-t border-gray-800 pt-12 pb-8">
+          <div className="max-w-md mx-auto text-center">
+            <h3 className="text-white font-bold text-xl mb-4">Stay Updated</h3>
+            <p className="text-gray-300 mb-6">Subscribe for latest news and updates</p>
+            <div className="flex gap-3">
+              <input
+                type="email"
+                placeholder="Your email..."
+                className="flex-1 bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500"
+              />
+              <button className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity">
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom */}
+        <div className="border-t border-gray-800 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-400 mb-4 md:mb-0">
+              © 2024 Rial Coin. All rights reserved.
+            </p>
+            <div className="flex space-x-6">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">Terms</a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy</a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">Cookies</a>
+            </div>
+          </div>
+        </div>
       </div>
     </footer>
   );

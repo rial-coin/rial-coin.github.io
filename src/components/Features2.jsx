@@ -1,74 +1,147 @@
 import { motion } from "framer-motion";
-
-import feature5 from "../assets/images/feature5.jpg";
-import feature6 from "../assets/images/feature6.jpg";
 import { CheckArrowIcon } from "../assets/icons/CheckArrowIcon";
 
 export const Features2 = () => (
-  <section className="w-full bg-bgDark2 mt-12 sm:mt-24 mb-12 lg:my-20 lg:mb-24 pt-4">
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: 0.2 }}
-    >
-      <div className="flex flex-wrap items-center 2xl:w-[1450px] xl:w-[1300px] w-11/12 mx-auto md:pl-4 xl:pr-16 xl:pl-16">
-        {/* Image Section */}
-        <div className="w-11/12 sm:w-3/4 mx-auto lg:w-1/2 flex flex-wrap lg:-mx-4 sm:pr-8 justify-center order-last lg:order-first">
-          <div className="mb-8 lg:mb-0 w-full px-2 lg:pl-16 flex flex-col justify-center md:pl-8">
-            <div className="mb-4 py-3 md:pl-3 md:pr-20 lg:pr-12 rounded">
-              <img
-                src={feature5.src}
-                alt="Low Transaction Costs"
-                className="rounded-xl main-border-gray"
-              />
-              <p className="text-white text-center mt-4 text-sm">
-                Low Transaction Costs
-              </p>
-            </div>
-            <div className="py-3 md:pl-20 lg:pl-12 md:pr-2 rounded">
-              <img
-                src={feature6.src}
-                alt="Global Accessibility"
-                className="rounded-xl main-border-gray"
-              />
-              <p className="text-white text-center mt-4 text-sm">
-                Global Accessibility
-              </p>
-            </div>
-          </div>
-        </div>
+  <section className="relative py-24 bg-gradient-to-br from-slate-950 via-blue-950/20 to-slate-950 overflow-hidden">
+    {/* Background Effects */}
+    <div className="absolute inset-0">
+      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+      <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+    </div>
 
-        {/* Text Section */}
-        <div className="w-full lg:w-1/2 mb-12 lg:mb-0 xl:pl-8">
-          <div className="mx-auto lg:mx-auto w-11/12 sm:w-4/5 md:w-3/4 lg:w-unset">
-            <span className="block-subtitle">Empower Your Economy</span>
-            <h2 className="mt-6 mb-8 text-4xl lg:text-5xl block-big-title">
-              Advanced Features of Rial Coin
-            </h2>
-            <p className="mb-12 text-secondaryText leading-loose">
-              Rial Coin offers cutting-edge solutions for secure and efficient
-              transactions, ensuring global access and financial inclusivity.
-              Embrace the future of digital finance with these innovative
-              features.
-            </p>
-            <ul className="mb-6 text-primaryText">
-              <li className="mb-4 flex">
-                <CheckArrowIcon />
-                <span>Low fees for every transaction</span>
-              </li>
-              <li className="mb-4 flex">
-                <CheckArrowIcon />
-                <span>Borderless payments for global accessibility</span>
-              </li>
-              <li className="mb-4 flex">
-                <CheckArrowIcon />
-                <span>Decentralized and secure blockchain technology</span>
-              </li>
-            </ul>
+    <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="grid lg:grid-cols-2 gap-16 items-center">
+        {/* Feature Boxes Section */}
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="order-2 lg:order-1"
+        >
+          <div className="grid grid-cols-1 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative group"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+              <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-blue-500/50 transition-all duration-300 text-center">
+                <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-6 text-4xl">
+                  💰
+                </div>
+                <h3 className="text-white text-xl font-bold mb-4">
+                  Low Transaction Costs
+                </h3>
+                <p className="text-gray-300">
+                  Fast transactions with minimal fees
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="relative group lg:ml-12"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+              <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:border-purple-500/50 transition-all duration-300 text-center">
+                <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-6 text-4xl">
+                  🌍
+                </div>
+                <h3 className="text-white text-xl font-bold mb-4">
+                  Global Accessibility
+                </h3>
+                <p className="text-gray-300">
+                  Borderless and timeless access
+                </p>
+              </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
+
+        {/* Content Section */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="order-1 lg:order-2"
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center space-x-2 bg-blue-500/10 border border-blue-500/30 rounded-full px-6 py-2 mb-6"
+          >
+            <span className="text-blue-400 font-medium">⚡ Advanced Features</span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-4xl lg:text-5xl font-bold text-white mb-6"
+          >
+            Advanced Features
+            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"> of Rial Coin</span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-xl text-gray-300 mb-8 leading-relaxed"
+          >
+            Rial Coin offers cutting-edge solutions for secure and efficient transactions, 
+            ensuring global access and financial inclusivity.
+          </motion.p>
+
+          <div className="space-y-6">
+            {[
+              { text: "Low fees for every transaction", delay: 0.4 },
+              { text: "Borderless payments for global accessibility", delay: 0.5 },
+              { text: "Decentralized and secure blockchain technology", delay: 0.6 }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: item.delay }}
+                className="flex items-center space-x-4 group"
+              >
+                <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <CheckArrowIcon />
+                </div>
+                <span className="text-gray-300 text-lg group-hover:text-white transition-colors duration-300">
+                  {item.text}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            className="mt-10"
+          >
+            <button className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105">
+              Learn More
+            </button>
+          </motion.div>
+        </motion.div>
       </div>
-    </motion.div>
+    </div>
   </section>
 );

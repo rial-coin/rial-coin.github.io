@@ -1,115 +1,187 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const FAQData = [
   {
-    question: "What is Rial Coin?",
+    question: "What is RIAL Coin?",
     answer:
-      "Rial Coin (RIAL) is a blockchain-based cryptocurrency developed on the TON network. It is designed to revolutionize asset management by providing a secure, transparent, and efficient platform for online transactions, staking, and more.",
+      "RIAL Coin is a revolutionary digital currency built on the TON blockchain. It's designed to provide secure, fast, and affordable transactions for the global economy. With advanced smart contract capabilities and seamless integration, RIAL represents the future of digital finance.",
+    icon: "💎"
   },
   {
-    question: "How can I purchase Rial Coin?",
+    question: "How can I purchase RIAL Coin?",
     answer:
-      "You can purchase Rial Coin during the Initial Coin Offering (ICO) or through cryptocurrency exchanges where RIAL is listed. Ensure you have a compatible TON-compatible wallet to store your RIAL tokens securely.",
+      "You can purchase RIAL Coin directly through our platform using USDT. Simply connect your TON-compatible wallet, enter the amount you wish to purchase, and complete the transaction. The process is instant and secure with a 1:1 exchange rate.",
+    icon: "🛒"
   },
   {
-    question: "What are the use cases for Rial Coin?",
+    question: "What makes RIAL Coin different?",
     answer:
-      "Rial Coin can be used for a variety of purposes, including online shopping, digital content purchases, metaverse integration, in-app purchases, peer-to-peer transactions, loyalty programs, and event ticketing. Its versatility allows it to be integrated seamlessly into various industries.",
+      "RIAL Coin combines the best of blockchain technology with user-friendly design. Features include lightning-fast transactions (under 30 seconds), ultra-low fees (0.01%), military-grade security, and 24/7 global accessibility. Our deflationary model ensures long-term value appreciation.",
+    icon: "⚡"
   },
   {
-    question: "How secure is Rial Coin?",
+    question: "How secure is RIAL Coin?",
     answer:
-      "Rial Coin leverages the security features of blockchain technology, including decentralized ledger systems and smart contracts, to ensure tamper-proof transactions and data safety. Additional layers of encryption and secure protocols make Rial Coin a highly secure digital currency.",
+      "RIAL Coin leverages the robust security features of the TON blockchain, including advanced cryptographic protocols, decentralized consensus mechanisms, and smart contract audits. Your funds are protected by military-grade encryption and multi-signature security systems.",
+    icon: "🔒"
   },
   {
-    question: "Does Rial Coin support staking?",
+    question: "Does RIAL Coin support staking?",
     answer:
-      "Yes, Rial Coin supports staking programs where token holders can participate in the network, secure the blockchain, and earn RIAL rewards as incentives.",
+      "Yes! RIAL Coin offers competitive staking rewards for token holders. By staking your RIAL tokens, you help secure the network while earning passive income. Staking rewards are distributed automatically and can be claimed at any time.",
+    icon: "🎁"
   },
   {
-    question: "What is Rial Coin’s role in the metaverse?",
+    question: "What are the transaction fees?",
     answer:
-      "Rial Coin is designed to be a versatile currency for the metaverse, enabling users to purchase virtual assets like land, avatars, and services. It facilitates seamless transactions within virtual ecosystems while fostering a vibrant digital economy.",
+      "RIAL Coin features one of the lowest fee structures in the industry. Network fees are approximately 0.01 TON per transaction, making it cost-effective for both small and large transfers. No hidden fees or surprise charges.",
+    icon: "💰"
   },
   {
-    question: "How can I stay updated on Rial Coin developments?",
+    question: "How can I stay updated?",
     answer:
-      "Stay informed by following Rial Coin on social media platforms like Twitter, Telegram, and Discord. You can also visit our official website and subscribe to our newsletter for the latest updates and announcements.",
+      "Follow us on our official social media channels including Twitter, Telegram, and Discord. Subscribe to our newsletter for the latest updates, feature releases, and community events. Join our vibrant community of RIAL holders worldwide.",
+    icon: "📢"
   },
 ];
 
 export const FAQ = () => (
-  <section className="relative -mt-8 sm:mt-0 pt-12 sm:pt-16 pb-16 bg-blueGray-50 overflow-hidden">
-    <div className="absolute -top-10" id="FAQ" />
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: 0.2 }}
-    >
-      <div className="relative z-10 container px-2 sm:px-8 lg:px-4 mx-auto w-11/12 sm:w-full">
-        <div className="md:max-w-4xl mx-auto">
-          <p className="mb-7 block-subtitle text-center">Have any questions?</p>
-          <h2 className="mb-16 block-big-title text-center">
-            Frequently Asked Questions
-          </h2>
-          <div className="mb-11 flex flex-wrap -m-1">
-            {FAQData.map((item, index) => (
-              <div className="w-full p-1" key={`${item.question}-${index}`}>
-                <FAQBox
-                  title={item.question}
-                  content={item.answer}
-                  key={`${item.question}-${item.answer}`}
-                  defaultOpen={index === 0}
-                />
-              </div>
-            ))}
+  <section className="relative py-20 lg:py-32 bg-gradient-to-br from-bgDark3 via-bgDark2 to-bgDark3 overflow-hidden" id="FAQ">
+    {/* Background Elements */}
+    <div className="absolute inset-0">
+      <div className="absolute top-20 right-20 w-80 h-80 bg-primaryColor/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 left-20 w-96 h-96 bg-secondaryColor/5 rounded-full blur-3xl"></div>
+    </div>
+
+    <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      {/* Section Header */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="text-center mb-16"
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="inline-flex items-center space-x-2 bg-primaryColor/10 border border-primaryColor/30 rounded-full px-6 py-2 mb-6"
+        >
+          <span className="text-primaryColor font-medium">❓ FAQ</span>
+        </motion.div>
+        
+        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-6">
+          Frequently Asked <span className="bg-gradient-to-r from-primaryColor to-secondaryColor bg-clip-text text-transparent">Questions</span>
+        </h2>
+        
+        <p className="text-xl text-secondaryText max-w-3xl mx-auto leading-relaxed">
+          Got questions about RIAL Coin? We've got answers. Find everything you need to know about our revolutionary digital currency.
+        </p>
+      </motion.div>
+
+      {/* FAQ Grid */}
+      <div className="grid grid-cols-1 gap-6">
+        {FAQData.map((item, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+          >
+            <FAQBox
+              title={item.question}
+              content={item.answer}
+              icon={item.icon}
+              defaultOpen={index === 0}
+            />
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Support Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+        className="mt-16 text-center"
+      >
+        <div className="bg-gradient-to-r from-primaryColor/10 to-secondaryColor/10 backdrop-blur-lg rounded-3xl p-8 border border-primaryColor/30">
+          <h3 className="text-2xl font-bold text-white mb-4">Still have questions?</h3>
+          <p className="text-secondaryText mb-6">Our support team is here to help you 24/7. Don't hesitate to reach out!</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="mailto:support@rialcoin.io"
+              className="bg-gradient-to-r from-primaryColor to-secondaryColor hover:from-primaryHover hover:to-primaryColor px-8 py-3 rounded-2xl font-bold text-white transition-all duration-300 transform hover:scale-105"
+            >
+              Contact Support
+            </a>
+            <a
+              href="#"
+              className="border-2 border-primaryColor hover:bg-primaryColor/10 px-8 py-3 rounded-2xl font-bold text-primaryColor transition-all duration-300"
+            >
+              Join Community
+            </a>
           </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   </section>
 );
 
-const FAQBox = ({ defaultOpen, title, content }) => {
+const FAQBox = ({ defaultOpen, title, content, icon }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <div
-      className="pt-2 sm:pt-6 pb-2 px-3 sm:px-8 rounded-3xl bg-bgDark3 main-border-gray-darker mb-4 relative hover:bg-bgDark3Hover cursor-pointer transition"
+    <motion.div
+      className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10 hover:border-primaryColor/50 transition-all duration-300 cursor-pointer group"
       onClick={() => setIsOpen(!isOpen)}
+      whileHover={{ scale: 1.02 }}
     >
-      <div className="flex flex-col p-2 justify-center items-start">
-        <h3 className="content-title pt-3 sm:pt-0 pr-8 sm:pr-0">{title}</h3>
-        <p
-          className={`text-secondaryText pt-4 transition-height duration-300 overflow-hidden ${
-            isOpen ? "max-h-96" : "max-h-0"
-          }`}
+      <div className="flex items-start justify-between">
+        <div className="flex items-start space-x-4 flex-1">
+          <div className="w-12 h-12 bg-primaryColor/20 rounded-xl flex items-center justify-center text-2xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+            {icon}
+          </div>
+          <div className="flex-1">
+            <h3 className="text-white font-bold text-lg mb-2 group-hover:text-primaryColor transition-colors duration-300">
+              {title}
+            </h3>
+            <AnimatePresence>
+              {isOpen && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="overflow-hidden"
+                >
+                  <p className="text-secondaryText leading-relaxed pr-4">
+                    {content}
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
+        
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
+          className="flex-shrink-0 ml-4"
         >
-          {content}
-        </p>
+          <div className="w-8 h-8 bg-primaryColor/20 rounded-lg flex items-center justify-center group-hover:bg-primaryColor/30 transition-colors duration-300">
+            <svg className="w-4 h-4 text-primaryColor" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </motion.div>
       </div>
-      <div className="absolute top-6 right-4 sm:top-8 sm:right-8">
-        <svg
-          width="28px"
-          height="30px"
-          viewBox="0 0 20 20"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className={`transition-all duration-500 ${
-            isOpen ? "rotate-[180deg]" : "rotate-[270deg]"
-          }`}
-        >
-          <path
-            d="M4.16732 12.5L10.0007 6.66667L15.834 12.5"
-            stroke="#4F46E5"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          ></path>
-        </svg>
-      </div>
-    </div>
+    </motion.div>
   );
 };

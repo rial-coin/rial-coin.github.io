@@ -3,60 +3,137 @@ import featuresdiagonal from "../assets/images/featuresdiagonal.jpg";
 
 export const FeaturesDiagonal = () => {
   return (
-    <section className="lg:mb-16 w-full flex-col justify-center items-center">
- 
+    <section className="relative py-24 bg-gradient-to-br from-slate-950 via-indigo-950/20 to-slate-950 overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+      </div>
 
-      {/* Content Section */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        <div className="2xl:w-[1150px] xl:w-[1050px] md:w-4/5 flex justify-center pt-12 lg:pt-24 pb-8 lg:pb-20 mx-auto lg:flex-row flex-col">
-          {/* Left Content */}
-          <div className="w-3/4 lg:w-1/2 flex flex-col lg:mx-unset mx-auto">
-            <span className="block-subtitle text-primaryColor">
-              Transform Your Economy
-            </span>
-            <h2 className="mt-10 mb-8 text-4xl lg:text-5xl block-big-title text-white">
-              Empower Financial Freedom
-            </h2>
-            <p className="mb-16 text-secondaryText leading-loose">
-              Rial Coin enables secure, fast, and transparent transactions,
-              bridging the gap between traditional and modern digital economies.
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Content Section */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="space-y-8"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center space-x-2 bg-indigo-500/10 border border-indigo-500/30 rounded-full px-6 py-2"
+            >
+              <span className="text-indigo-400 font-medium">🚀 Financial Revolution</span>
+            </motion.div>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-4xl lg:text-5xl font-bold text-white leading-tight"
+            >
+              Experience Financial
+              <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent"> Freedom</span>
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-xl text-gray-300 leading-relaxed"
+            >
+              Rial Coin enables secure, fast, and transparent transactions, 
+              bridging the gap between traditional and modern digital economies. 
               Unlock the potential of blockchain for everyday financial needs.
-            </p>
-            <div className="flex gap-4">
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-col sm:flex-row gap-4"
+            >
               <a
                 href="/buy"
-                className="w-[210px] h-12 contained-button bg-primaryColor text-white rounded-lg flex justify-center items-center hover:bg-primaryHover transition"
-                aria-label="Buy Rial Coin"
+                className="group bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
               >
-                Buy Now
+                <span>Buy Now</span>
+                <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
               </a>
+              
               <a
                 href="/sell"
-                className="w-[210px] h-12 contained-button bg-white text-primaryColor border border-primaryColor rounded-lg flex justify-center items-center hover:bg-bgDark3 hover:text-white transition"
-                aria-label="Sell Rial Coin"
+                className="group border-2 border-indigo-500 text-indigo-400 px-8 py-4 rounded-xl font-semibold hover:bg-indigo-500/10 transition-all duration-300 flex items-center justify-center"
               >
-                Sell Now
+                <span>Sell</span>
+                <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
               </a>
-            </div>
-          </div>
+            </motion.div>
 
-          {/* Right Image */}
-          <div className="w-4/5 lg:w-1/2 lg:pl-16 flex justify-center mx-auto pt-16 lg:pt-0">
-            <img
-              src={featuresdiagonal.src}
-              alt="Empower Financial Freedom with Rial Coin"
-              className="rounded-xl main-border-gray"
-            />
-          </div>
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="grid grid-cols-3 gap-8 pt-8"
+            >
+              {[
+                { label: "Transactions", value: "10M+", icon: "⚡" },
+                { label: "Users", value: "50K+", icon: "👥" },
+                { label: "Countries", value: "15+", icon: "🌍" }
+              ].map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="text-2xl mb-2">{stat.icon}</div>
+                  <div className="text-2xl font-bold text-white">{stat.value}</div>
+                  <div className="text-sm text-gray-400">{stat.label}</div>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* Feature Cards Section */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="grid grid-cols-2 gap-6"
+          >
+            {[
+              { icon: "🚀", title: "Fast Transactions", desc: "Lightning-fast blockchain operations" },
+              { icon: "🔒", title: "Secure Network", desc: "Military-grade encryption" },
+              { icon: "💎", title: "Premium Quality", desc: "Enterprise-level solutions" },
+              { icon: "🌍", title: "Global Access", desc: "Worldwide availability" }
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
+                className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-6 hover:border-indigo-500/30 transition-all duration-300"
+              >
+                <div className="text-4xl mb-4">{feature.icon}</div>
+                <h3 className="text-white font-bold text-lg mb-2">{feature.title}</h3>
+                <p className="text-gray-300 text-sm">{feature.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
-      </motion.div>
-
-    
+      </div>
     </section>
   );
 };

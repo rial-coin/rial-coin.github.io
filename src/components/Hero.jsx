@@ -1,122 +1,91 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { gsap } from "gsap";
 
 export const Hero = () => {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
-  // Target date for the countdown
-  const targetDate = new Date("2025-03-01T00:00:00");
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const diff = targetDate - now;
-
-      if (diff <= 0) {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / 1000 / 60) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      setTimeLeft({ days, hours, minutes, seconds });
-
-      // Save the remaining time in localStorage
-      localStorage.setItem("rialTimer", JSON.stringify({ days, hours, minutes, seconds }));
-    };
-
-    // Retrieve timer state from localStorage to persist between refreshes
-    const savedTimer = localStorage.getItem("rialTimer");
-    if (savedTimer) {
-      setTimeLeft(JSON.parse(savedTimer));
-    }
-
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // GSAP Animations
-  useEffect(() => {
-    gsap.fromTo(
-      ".timer-box",
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 1, stagger: 0.2 }
-    );
-  }, []);
-
   return (
-    <section
-      className="w-screen flex justify-center items-center bg-bgDark1 mb-[12vw] md:mb-[10vw] lg:mb-[6vw] xl:mb-[4vw] 2xl:mb-30 hero-bg-gradient pb-24 sm:pb-8 md:pb-12 lg:pb-0"
-      id="home"
-    >
-      <div className="w-full max-w-6xl flex flex-col justify-center items-center pt-20 md:pt-28 lg:pt-32 text-center">
+    <section className="relative min-h-screen w-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" id="home">
+      {/* Simple Background */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+      </div>
 
+      {/* Main Content */}
+      <div className="relative z-10 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 pt-20">
+        <div className="w-full max-w-4xl mx-auto text-center">
+          
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center space-x-2 bg-purple-500/10 border border-purple-500/30 rounded-full px-6 py-2 mb-8"
+          >
+            <span className="text-purple-400 font-medium">🚀 The Future of Digital Currency</span>
+          </motion.div>
 
-        {/* Main Headline */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-white leading-tight mt-10">
-            Unlock Potential <br className="hidden sm:block" /> with{" "}
-            <span className="text-primaryColor">Rial Coin</span>
-          </h1>
-        </motion.div>
+          {/* Main Title */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
+          >
+            Welcome to
+            <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent"> Rial Coin</span>
+          </motion.h1>
 
-        {/* Countdown Timer */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <div className="flex flex-wrap justify-center items-center mt-12 gap-4">
-            {Object.entries(timeLeft).map(([unit, value]) => (
-              <div
-                key={unit}
-                className="timer-box bg-primaryColor text-white rounded-lg p-4 w-24 sm:w-28 lg:w-32 shadow-md flex flex-col items-center"
-              >
-                <p className="text-3xl sm:text-4xl font-extrabold">{value}</p>
-                <p className="text-sm sm:text-base mt-1 uppercase tracking-wide">{unit}</p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
+          >
+            Experience the next generation of blockchain technology with secure, fast, and transparent transactions.
+          </motion.p>
 
-{/* Call-to-Action Buttons */}
-<motion.div
-  initial={{ opacity: 0, y: 10 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.5, delay: 0.3 }}
->
-  <div className="flex flex-col items-center gap-4 mt-12 pb-12 lg:pb-40">
-    {/* Buy Button */}
-    <a
-      href="/buy"
-      className="contained-button bg-primaryColor hover:bg-primaryHover w-64 sm:w-52 h-12 text-white rounded-lg font-bold text-center flex justify-center items-center transition"
-      aria-label="Buy Rial Coin"
-    >
-      Buy Rial Coin
-    </a>
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
+          >
+            <a
+              href="/buy"
+              className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
+            >
+              Get Started
+            </a>
+            <a
+              href="#features"
+              className="border-2 border-purple-500 text-purple-400 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-purple-500/10 transition-all duration-300 w-full sm:w-auto"
+            >
+              Learn More
+            </a>
+          </motion.div>
 
-    {/* Limited Time Offer Text */}
-    <p className="text-secondaryText text-lg mt-6 text-center">
-      <strong className="text-primaryColor">Limited Time Offer:</strong> Buy Rial Coin for only 1 USDT until 2025-03-01!
-    </p>
-  </div>
-</motion.div>
-
-
- 
+          {/* Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="grid grid-cols-3 gap-8 max-w-2xl mx-auto"
+          >
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-white mb-2">10M+</div>
+              <div className="text-gray-400">Transactions</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-white mb-2">50K+</div>
+              <div className="text-gray-400">Users</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-white mb-2">15+</div>
+              <div className="text-gray-400">Countries</div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
