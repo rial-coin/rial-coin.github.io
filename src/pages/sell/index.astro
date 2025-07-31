@@ -6,16 +6,19 @@ import Layout from "../../layouts/Layout.astro";
 import '../../styles/Theme.css';
 import { Sell } from "../../components/Sell";
 import { Page } from "../../components/Page";
-  const pageData = {
+import { TonProviderWrapper } from "../../components/TonProviderWrapper";
+const pageData = {
   title: "Sell Rial Coin",
   subtitle: "Convert your RIAL tokens back to USDT with instant execution and competitive rates.",
 };
 ---
 
 <Layout title="Sell Rial Coin">
-  <Navbar client:load />
-  <Page pageData={pageData} />
-  <Sell client:load/>
-  <Footer />
-  <ScrollUpButton client:load />
+  <TonProviderWrapper client:load>
+    <Navbar client:load />
+    <Page pageData={pageData} />
+    <Sell client:load/>
+    <Footer />
+    <ScrollUpButton client:load />
+  </TonProviderWrapper>
 </Layout>

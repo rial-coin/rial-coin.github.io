@@ -4,18 +4,21 @@ import { Navbar } from "../../components/Navbar";
 import { ScrollUpButton } from "../../components/ScrollUpButton";
 import Layout from "../../layouts/Layout.astro";
 import '../../styles/Theme.css';
-  import { Buy } from "../../components/Buy";
+import { Buy } from "../../components/Buy";
 import { Page } from "../../components/Page";
-  const pageData = {
+import { TonProviderWrapper } from "../../components/TonProviderWrapper";
+const pageData = {
   title: "Buy Rial Coin",
   subtitle: "Securely connect your wallet and send USDT effortlessly.",
 };
 ---
  
 <Layout title="Buy Rial Coin">
-  <Navbar client:load />
-  <Page pageData={pageData} />
-  <Buy client:load/>
-  <Footer />
-  <ScrollUpButton client:load />
+  <TonProviderWrapper client:load>
+    <Navbar client:load />
+    <Page pageData={pageData} />
+    <Buy client:load/>
+    <Footer />
+    <ScrollUpButton client:load />
+  </TonProviderWrapper>
 </Layout>
