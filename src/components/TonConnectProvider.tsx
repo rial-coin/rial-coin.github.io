@@ -76,6 +76,9 @@ export const TonConnectProvider: React.FC<TonConnectProviderProps> = ({ children
         uiPreferences={{
           theme: THEME.DARK
         }}
+        actionsConfiguration={{
+          twaReturnUrl: 'https://t.me/RialCoinBot'
+        }}
       >
         {children}
       </TonConnectUIProvider>

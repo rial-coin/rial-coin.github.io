@@ -2,12 +2,31 @@ import React, { useState } from "react";
 import { TonConnectButton, useTonConnectUI, useTonAddress } from "@tonconnect/ui-react";
 import { handleSendRial } from "../payments/sendRial";
 import { CustomConnectButton } from "./CustomConnectButton";
+import { BalanceDisplay } from "./BalanceDisplay";
+import { PercentageSelector } from "./PercentageSelector";
 
 const Receive: React.FC = () => {
   const [tonConnectUI] = useTonConnectUI();
   const userFriendlyAddress = useTonAddress();
   const rawAddress = useTonAddress(false);
   const [rialAmount, setRialAmount] = useState<number>(0);
+  const [balances, setBalances] = useState({
+    usdt: 0,
+    rial: 0,
+    ton: 0
+  });
+
+  const handleBalanceUpdate = (usdtBalance: number, rialBalance: number, tonBalance: number) => {
+    setBalances({
+      usdt: usdtBalance,
+      rial: rialBalance,
+      ton: tonBalance
+    });
+  };
+
+  const handleAmountSelect = (amount: number, percentage: number) => {
+    setRialAmount(amount);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-bgDark1 via-bgDark2 to-bgDark3 p-4 md:p-8">
@@ -46,7 +65,9 @@ const Receive: React.FC = () => {
                 <div className="bg-bgDark3/50 rounded-2xl p-6 border border-white/5">
                   <div className="flex justify-between items-center mb-4">
                     <span className="text-secondaryText text-sm">From</span>
-                    <span className="text-secondaryText text-sm">Balance: 0.00</span>
+                    <span className="text-secondaryText text-sm">
+                      Balance: {balances.rial.toFixed(2)} RIAL
+                    </span>
                   </div>
                   <div className="flex items-center space-x-4">
                     <div className="flex items-center space-x-3 bg-bgDark2 rounded-xl px-4 py-3 min-w-max">
@@ -66,18 +87,19 @@ const Receive: React.FC = () => {
                       className="flex-1 bg-transparent text-white text-2xl font-semibold placeholder-secondaryText focus:outline-none text-right"
                     />
                   </div>
-                  <div className="flex justify-between items-center mt-2">
-                    <span className="text-secondaryText text-sm">≈ ${rialAmount || 0}</span>
-                    <div className="flex space-x-2">
-                      {[25, 50, 75, 100].map((percent) => (
-                        <button
-                          key={percent}
-                          className="text-xs px-3 py-1 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-all"
-                        >
-                          {percent}%
-                        </button>
-                      ))}
+                  <div className="mt-4">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-secondaryText text-sm">≈ ${rialAmount || 0}</span>
                     </div>
+                    {/* Percentage Selector - only show when wallet is connected and has RIAL balance */}
+                    {userFriendlyAddress && balances.rial > 0 && (
+                      <PercentageSelector
+                        balance={balances.rial}
+                        onAmountSelect={handleAmountSelect}
+                        selectedAmount={rialAmount}
+                        tokenSymbol="RIAL"
+                      />
+                    )}
                   </div>
                 </div>
 
@@ -153,6 +175,11 @@ const Receive: React.FC = () => {
 
           {/* Side Panel */}
           <div className="space-y-6">
+            {/* Balance Display - shows when wallet is connected */}
+            {userFriendlyAddress && (
+              <BalanceDisplay onBalanceUpdate={handleBalanceUpdate} />
+            )}
+
             {/* Wallet Status */}
             {userFriendlyAddress && (
               <div className="bg-gradient-to-br from-green-500/10 to-green-600/10 rounded-2xl p-6 border border-green-500/20">
